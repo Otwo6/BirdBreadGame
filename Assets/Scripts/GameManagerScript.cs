@@ -9,7 +9,11 @@ public class GameManagerScript : NetworkBehaviour
 	public float timeRemaining = 60f;  // Timer in seconds
 	public bool timerIsRunning = false;
 
-	public TMP_Text timerText;  // To display the countdown in UI (optional)
+	float countdownTimeRemaining = 5f;
+	bool countdownTimerRunning = false;
+
+	public TMP_Text timerText;
+	public TMP_Text countdownText;
 
 	private NetworkVariable<int> playersReady = new NetworkVariable<int>(0);
 
@@ -31,6 +35,22 @@ public class GameManagerScript : NetworkBehaviour
 				TimerComplete();  // Call a function when the timer ends
 			}
 		}
+
+		if (countdownTimerRunning)
+		{
+			if (countdownTimeRemaining > 0f)
+			{
+				countdownTimeRemaining -= Time.deltaTime;  // Subtract time
+				UpdateTimerUI();  // Update the UI with the remaining time
+			}
+			else
+			{
+				// Timer reaches zero
+				countdownTimeRemaining = 0;
+				countdownTimerRunning = false;
+				CountDownComplete();  // Call a function when the timer ends
+			}
+		}
 	}
 
 	void UpdateTimerUI()
@@ -47,11 +67,24 @@ public class GameManagerScript : NetworkBehaviour
 		}
 	}
 
+	void UpdateCountdownUI()
+	{
+		if (countdownText != null)
+		{
+			countdownText.text = countdownTimeRemaining.ToString();
+		}
+	}
+
 	void TimerComplete()
 	{
 		// Action to take when the timer reaches zero
 		Debug.Log("Time's up!");
 		// You can call any function here, like ending the game or triggering an event
+	}
+
+	void CountDownComplete()
+	{
+		timerIsRunning = true;
 	}
 
 	[ServerRpc(RequireOwnership = false)]
@@ -71,7 +104,7 @@ public class GameManagerScript : NetworkBehaviour
 		if(everyoneReady)
 		{
 			NotifyClientsClientRpc("Start the game were all ready");
-			timerIsRunning = true;
+			StartGame();
 		}
 		else
 		{
@@ -89,4 +122,9 @@ public class GameManagerScript : NetworkBehaviour
     {
         CheckPlayersReadyServerRpc();
     }
+
+	void StartGame()
+	{
+		countdownTimerRunning = true;
+	}
 }
