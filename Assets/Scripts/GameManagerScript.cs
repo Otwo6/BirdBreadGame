@@ -69,7 +69,7 @@ public class GameManagerScript : MonoBehaviour
 		bool everyoneReady = true;
 		for(int i = 0; i < players.Length; i++)
 		{
-			if(!players[i].GetComponent<PlayerInput>().isReady)
+			if(!players[i].GetComponent<PlayerInput>().isReady.Value)
 			{
 				everyoneReady = false;
 				break;

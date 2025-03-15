@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInput : NetworkBehaviour
 {
     GameManagerScript gameMan;
     
-    public bool isReady = false;
+    public NetworkVariable<bool> isReady = new NetworkVariable<bool>(false);
 
     void Start()
     {
@@ -17,15 +18,15 @@ public class PlayerInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            if(!isReady)
+            if(!isReady.Value)
             {
-                isReady = true;
+                isReady.Value = true;
                 gameMan.CheckPlayersReady();
                 print("Ready");
             }
             else
             {
-                isReady = false;
+                isReady.Value = false;
                 print("Unready");
             }
         }
