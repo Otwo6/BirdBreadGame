@@ -7,7 +7,7 @@ public class PlayerInput : NetworkBehaviour
 {
     GameManagerScript gameMan;
     
-    public NetworkVariable<bool> isReady = new NetworkVariable<bool>(NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> isReady = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     void Start()
     {
@@ -26,6 +26,7 @@ public class PlayerInput : NetworkBehaviour
             if(IsOwner)
             {
                 isReady.Value = !isReady.Value;
+                gameMan.CheckPlayersReady();
             }
         }
     }

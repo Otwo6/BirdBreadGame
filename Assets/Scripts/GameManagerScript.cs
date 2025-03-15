@@ -4,7 +4,7 @@ using Unity.Netcode;
 using UnityEngine;
 using TMPro;
 
-public class GameManagerScript : MonoBehaviour
+public class GameManagerScript : NetworkBehaviour
 {
 	public float timeRemaining = 60f;  // Timer in seconds
 	public bool timerIsRunning = false;
@@ -63,7 +63,8 @@ public class GameManagerScript : MonoBehaviour
 		// You can call any function here, like ending the game or triggering an event
 	}
 
-	public void CheckPlayersReady()
+	[ServerRpc(RequireOwnership = false)]
+	void CheckPlayersReadyServerRpc()
 	{
 		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 		bool everyoneReady = true;
@@ -85,4 +86,12 @@ public class GameManagerScript : MonoBehaviour
 			print("We stay waiting");
 		}
 	}
+
+	public void CheckPlayersReady()
+    {
+        if (IsServer)
+        {
+            CheckPlayersReadyServerRpc();
+        }
+    }
 }
