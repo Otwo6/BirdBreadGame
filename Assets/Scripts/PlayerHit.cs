@@ -25,6 +25,8 @@ public class PlayerHit : MonoBehaviour
 				myInv.SetCanUpdate();
 				hitInv.SetHasBread(false);
 				myInv.SetHasBread(true);
+
+				print("I " + gameObject + " take the bread");
 			}
 			else if(myInv.GetHasBread())
 			{
@@ -32,6 +34,8 @@ public class PlayerHit : MonoBehaviour
 				hitInv.SetCanUpdate();
 				myInv.SetHasBread(false);
 				hitInv.SetHasBread(true);
+
+				print("give " + otherPlayer + " the bread");
 			}
 		}
 	}
