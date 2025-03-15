@@ -5,40 +5,61 @@ using Unity.Netcode;
 
 public class PlayerInput : NetworkBehaviour
 {
-    private GameManagerScript gameManager;
-
-    // This will track the player's ready state on the server
+    GameManagerScript gameMan;
+    
     public NetworkVariable<bool> isReady = new NetworkVariable<bool>(false);
 
     void Start()
     {
-        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManagerScript>();
+        gameMan = GameObject.FindWithTag("GameManager").GetComponent<GameManagerScript>();
+        if(gameMan == null)
+        {
+            LookForGameMan();
+        }
+    }
+
+    void LookForGameMan()
+    {
+        gameMan = GameObject.FindWithTag("GameManager").GetComponent<GameManagerScript>();
+        if(gameMan == null)
+        {
+            LookForGameMan();
+        }
     }
 
     void Update()
     {
-        // Handle the input for the ready state toggle
-        if (Input.GetKeyDown(KeyCode.Y) && IsOwner)  // Ensure only the owner (player) can toggle
+        if (Input.GetKeyDown(KeyCode.Y))
         {
-            ToggleReadyState();
+            if (IsServer)
+            {
+                ToggleReadyState();
+            }
+            else
+            {
+                RequestReadyStateToggleServerRpc();
+            }
         }
     }
 
-    // Toggle the ready state and notify the server to update it
+    [ServerRpc]
+    void RequestReadyStateToggleServerRpc(ServerRpcParams rpcParams = default)
+    {
+        ToggleReadyState();
+    }
+
     void ToggleReadyState()
     {
-        if (isReady.Value)
+        if (!isReady.Value)
         {
-            isReady.Value = false;
-            Debug.Log("Unready");
+            isReady.Value = true;
+            gameMan.CheckPlayersReady();
+            print("Ready");
         }
         else
         {
-            isReady.Value = true;
-            Debug.Log("Ready");
+            isReady.Value = false;
+            print("Unready");
         }
-
-        // Notify the GameManager about the readiness change
-        gameManager.CheckPlayersReady();
     }
 }

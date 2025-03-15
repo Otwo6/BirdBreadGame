@@ -4,14 +4,14 @@ using Unity.Netcode;
 using UnityEngine;
 using TMPro;
 
-public class GameManagerScript : NetworkBehaviour
+public class GameManagerScript : MonoBehaviour
 {
 	public float timeRemaining = 60f;  // Timer in seconds
 	public bool timerIsRunning = false;
 
 	public TMP_Text timerText;  // To display the countdown in UI (optional)
 
-	private NetworkList<ulong> playersReady = new NetworkList<ulong>();
+	private NetworkVariable<int> playersReady = new NetworkVariable<int>(0);
 
 	void Start()
 	{
@@ -20,8 +20,6 @@ public class GameManagerScript : NetworkBehaviour
 		{
 			timerIsRunning = true;
 		}
-
-		NetworkManager.Singleton.OnClientConnectedCallback += OnPlayerJoined;
 	}
 
 	void Update()
@@ -43,14 +41,6 @@ public class GameManagerScript : NetworkBehaviour
 			}
 		}
 	}
-
-	void OnPlayerJoined(ulong clientId)
-    {
-        if (IsServer)  // Only the server can add players
-        {
-            playersReady.Add(clientId);
-        }
-    }
 
 	void UpdateTimerUI()
 	{
@@ -74,24 +64,25 @@ public class GameManagerScript : NetworkBehaviour
 	}
 
 	public void CheckPlayersReady()
-    {
-        if (IsServer)
-        {
-            // Check if all players are ready
-            foreach (var clientId in playersReady)
-            {
-                var playerObject = NetworkManager.Singleton.ConnectedClients[clientId].PlayerObject;
-                var playerInput = playerObject.GetComponent<PlayerInput>();
+	{
+		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+		bool everyoneReady = true;
+		for(int i = 0; i < players.Length; i++)
+		{
+			if(!players[i].GetComponent<PlayerInput>().isReady.Value)
+			{
+				everyoneReady = false;
+				break;
+			}
+		}
 
-                if (!playerInput.isReady.Value)
-                {
-                    Debug.Log("Not all players are ready yet.");
-                    return;  // At least one player is not ready
-                }
-            }
-
-            // All players are ready, start the game
-            Debug.Log("All players are ready! Starting the game...");
-        }
-    }
+		if(everyoneReady)
+		{
+			print("Start the game were all ready");
+		}
+		else
+		{
+			print("We stay waiting");
+		}
+	}
 }
