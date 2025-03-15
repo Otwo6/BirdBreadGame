@@ -11,12 +11,17 @@ public class PlayerInventory : NetworkBehaviour
     // Use NetworkVariable to sync the bread state across the network
     private NetworkVariable<bool> networkHasBread = new NetworkVariable<bool>(false);
 
+	bool canUpdate = true;
+
     public void SetHasBread(bool has)
     {
         if (IsServer) // Only the server should set the value
         {
-            networkHasBread.Value = has; // This will automatically sync across clients
-            SetBreadHatActiveOnClients(has); // Ensure the clients update the GameObject state
+			if(canUpdate)
+			{
+				networkHasBread.Value = has; // This will automatically sync across clients
+            	SetBreadHatActiveOnClients(has); // Ensure the clients update the GameObject state
+			}
         }
     }
 
@@ -55,5 +60,17 @@ public class PlayerInventory : NetworkBehaviour
         {
             SetBreadHatActiveOnClients(networkHasBread.Value);
         }
+    }
+
+	public void SetCanUpdate()
+	{
+		canUpdate = false;
+		StartCoroutine(ResetCanUpdateAfterDelay());
+	}
+
+	private IEnumerator ResetCanUpdateAfterDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        canUpdate = true;
     }
 }
