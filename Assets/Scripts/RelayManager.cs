@@ -59,60 +59,38 @@ public class RelayManager : MonoBehaviour
 		joinWidget.SetActive(false);
 		playerHUD.SetActive(true);
 		codeText.text = "Code: " + joinCode; 
-        SetName();
+        StartCoroutine(DelaySetName());
     }
 
-   void SetName()
+    void SetName()
     {
-        // Step 1: Get the local client from the NetworkManager
-        var localClient = NetworkManager.Singleton.LocalClient;
-        if (localClient == null)
+        GameObject playerChar = NetworkManager.Singleton.LocalClient.PlayerObject.gameObject;
+        if(playerChar != null)
         {
-            print("LocalClient is null. Cannot proceed.");
-            return;
-        }
+            PlayerStats stats = playerChar.GetComponent<PlayerStats>();
 
-        // Step 2: Get the PlayerObject from the LocalClient
-        var playerObject = localClient.PlayerObject;
-        if (playerObject == null)
-        {
-            print("PlayerObject is null. Cannot proceed.");
-            return;
-        }
-
-        // Step 3: Get the GameObject from the PlayerObject
-        GameObject playerChar = playerObject.gameObject;
-        if (playerChar == null)
-        {
-            print("PlayerChar (GameObject) is null. Cannot proceed.");
-            return;
-        }
-
-        // Step 4: Get the PlayerStats component from the playerChar
-        PlayerStats stats = playerChar.GetComponent<PlayerStats>();
-        if (stats == null)
-        {
-            print("PlayerStats component is null. Cannot proceed.");
-            return;
-        }
-
-        // Step 5: Check if nameInput is not null and if the text field is not empty
-        if (nameInput != null)
-        {
-            if (!string.IsNullOrEmpty(nameInput.text))
+            if(stats != null && nameInput != null)
             {
-                // If everything is valid, set the playerName
-                stats.playerName.Value = nameInput.text;
+                if(!string.IsNullOrEmpty(nameInput.text))
+                {
+                    stats.playerName.Value = nameInput.text;
+                }
             }
             else
             {
-                print("Name input is empty. Cannot set player name.");
+                print("Doesn't wanna work bc screw you");
             }
-        }
-        else
-        {
-            print("NameInput is null. Cannot set player name.");
         }
     }
 
+    IEnumerator DelaySetName()
+    {
+        while (NetworkManager.Singleton.LocalClient.PlayerObject == null)
+        {
+            yield return null;
+        }
+    
+        // Once PlayerObject is available, set the name
+        SetName();
+    }
 }
