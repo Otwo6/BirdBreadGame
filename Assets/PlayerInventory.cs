@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerInventory : NetworkBehaviour
 {
-    public bool hasBread = true; // public for testing; set to private when finished
+    public bool hasBread = false; // public for testing; set to private when finished
     public GameObject breadHat;
 
     // Use NetworkVariable to sync the bread state across the network
