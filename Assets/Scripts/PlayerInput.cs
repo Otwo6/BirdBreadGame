@@ -5,25 +5,17 @@ using Unity.Netcode;
 
 public class PlayerInput : NetworkBehaviour
 {
-    public GameManagerScript gameMan;
+    GameManagerScript gameMan;
     
-    public NetworkVariable<bool> isReady = new NetworkVariable<bool>(false);
+    public NetworkVariable<bool> isReady = new NetworkVariable<bool>();
 
     void Start()
     {
         gameMan = GameObject.FindWithTag("GameManager").GetComponent<GameManagerScript>();
-        if(gameMan == null)
-        {
-            LookForGameMan();
-        }
-    }
 
-    void LookForGameMan()
-    {
-        gameMan = GameObject.FindWithTag("GameManager").GetComponent<GameManagerScript>();
-        if(gameMan == null)
+        if(IsOwner)
         {
-            LookForGameMan();
+            isReady.Value = false;
         }
     }
 
@@ -31,35 +23,18 @@ public class PlayerInput : NetworkBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            if (IsServer)
+            if(IsOwner)
             {
-                ToggleReadyState();
+                if(isReady.Value)
+                {
+                    isReady.Value = false;
+                }
+                else
+                {
+                    isReady.Value = true;
+                }
+                
             }
-            else
-            {
-                RequestReadyStateToggleServerRpc();
-            }
-        }
-    }
-
-    [ServerRpc]
-    void RequestReadyStateToggleServerRpc(ServerRpcParams rpcParams = default)
-    {
-        ToggleReadyState();
-    }
-
-    void ToggleReadyState()
-    {
-        if (!isReady.Value)
-        {
-            isReady.Value = true;
-            gameMan.CheckPlayersReady();
-            print("Ready");
-        }
-        else
-        {
-            isReady.Value = false;
-            print("Unready");
         }
     }
 }
