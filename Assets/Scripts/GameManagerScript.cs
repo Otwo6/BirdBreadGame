@@ -24,7 +24,10 @@ public class GameManagerScript : NetworkBehaviour
 		{
 			if (timeRemaining.Value > 0)
 			{
-				timeRemaining.Value -= Time.deltaTime;  // Subtract time
+				if(IsServer)
+				{
+					timeRemaining.Value -= Time.deltaTime;  // Subtract time
+				}
 				UpdateTimerUI();  // Update the UI with the remaining time
 			}
 			else
@@ -40,7 +43,10 @@ public class GameManagerScript : NetworkBehaviour
 		{
 			if (countdownTimeRemaining.Value > 1f)
 			{
-				countdownTimeRemaining.Value -= Time.deltaTime;  // Subtract time
+				if(IsServer)
+				{
+					countdownTimeRemaining.Value -= Time.deltaTime;  // Subtract time
+				}
 				UpdateCountdownUI();  // Update the UI with the remaining time
 			}
 			else
