@@ -63,6 +63,7 @@ public class GameManagerScript : MonoBehaviour
 		// You can call any function here, like ending the game or triggering an event
 	}
 
+	[ServerRpc]
 	public void AddPlayerReady()
 	{
 		playersReady.Value++;
@@ -81,6 +82,7 @@ public class GameManagerScript : MonoBehaviour
 		}
 	}
 
+	[ServerRpc]
 	public void RemovePlayerReady()
 	{
 		playersReady.Value--;
