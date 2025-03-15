@@ -19,10 +19,10 @@ public class PlayerHit : MonoBehaviour
 			print("Hit a player");
 			PlayerInventory hitInv = otherPlayer.GetComponent<PlayerInventory>();
 
-			if(hitInv.hasBread)
+			if(hitInv.GetHasBread())
 			{
-				hitInv.hasBread = false;
-				myInv.hasBread = true;
+				hitInv.SetHasBread(false);
+				myInv.SetHasBread(true);
 			}
 		}
 	}
