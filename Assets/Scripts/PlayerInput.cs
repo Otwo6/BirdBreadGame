@@ -5,48 +5,40 @@ using Unity.Netcode;
 
 public class PlayerInput : NetworkBehaviour
 {
-    GameManagerScript gameMan;
-    
+    private GameManagerScript gameManager;
+
+    // This will track the player's ready state on the server
     public NetworkVariable<bool> isReady = new NetworkVariable<bool>(false);
 
     void Start()
     {
-        gameMan = GameObject.FindWithTag("GameManager").GetComponent<GameManagerScript>();
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManagerScript>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Y))
+        // Handle the input for the ready state toggle
+        if (Input.GetKeyDown(KeyCode.Y) && IsOwner)  // Ensure only the owner (player) can toggle
         {
-            if (IsServer)
-            {
-                ToggleReadyState();
-            }
-            else
-            {
-                RequestReadyStateToggleServerRpc();
-            }
+            ToggleReadyState();
         }
     }
 
-    [ServerRpc]
-    void RequestReadyStateToggleServerRpc(ServerRpcParams rpcParams = default)
-    {
-        ToggleReadyState();
-    }
-
+    // Toggle the ready state and notify the server to update it
     void ToggleReadyState()
     {
-        if (!isReady.Value)
+        if (isReady.Value)
         {
-            isReady.Value = true;
-            gameMan.CheckPlayersReady();
-            print("Ready");
+            isReady.Value = false;
+            Debug.Log("Unready");
         }
         else
         {
-            isReady.Value = false;
-            print("Unready");
+            isReady.Value = true;
+            Debug.Log("Ready");
         }
+
+        // Notify the GameManager about the readiness change
+        gameManager.CheckPlayersReady();
     }
 }
