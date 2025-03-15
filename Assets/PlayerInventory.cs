@@ -21,6 +21,7 @@ public class PlayerInventory : NetworkBehaviour
 			{
 				networkHasBread.Value = has; // This will automatically sync across clients
             	SetBreadHatActiveOnClients(has); // Ensure the clients update the GameObject state
+				SetCanUpdate();
 			}
         }
     }
@@ -62,7 +63,7 @@ public class PlayerInventory : NetworkBehaviour
         }
     }
 
-	public void SetCanUpdate()
+	void SetCanUpdate()
 	{
 		canUpdate = false;
 		StartCoroutine(ResetCanUpdateAfterDelay());

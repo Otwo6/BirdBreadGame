@@ -21,8 +21,6 @@ public class PlayerHit : MonoBehaviour
 
 			if(hitInv.GetHasBread())
 			{
-				hitInv.SetCanUpdate();
-				myInv.SetCanUpdate();
 				hitInv.SetHasBread(false);
 				myInv.SetHasBread(true);
 
@@ -30,8 +28,6 @@ public class PlayerHit : MonoBehaviour
 			}
 			else if(myInv.GetHasBread())
 			{
-				myInv.SetCanUpdate();
-				hitInv.SetCanUpdate();
 				myInv.SetHasBread(false);
 				hitInv.SetHasBread(true);
 
