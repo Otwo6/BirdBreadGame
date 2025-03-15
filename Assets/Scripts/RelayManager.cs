@@ -73,7 +73,7 @@ public class RelayManager : MonoBehaviour
             {
                 if(!string.IsNullOrEmpty(nameInput.text))
                 {
-                    stats.SetPlayerName(nameInput.text);
+                    stats.SetPlayerNameServerRpc(nameInput.text);
                 }
             }
             else

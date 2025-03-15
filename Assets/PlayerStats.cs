@@ -22,7 +22,8 @@ public class PlayerStats : NetworkBehaviour
         name = playerName.Value.ToString();
     }
 
-    public void SetPlayerName(string newName)
+    [ServerRpc(RequireOwnership = false)]
+    public void SetPlayerNameServerRpc(string newName)
     {
         playerName.Value = newName;
     }
