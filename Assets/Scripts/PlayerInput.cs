@@ -5,7 +5,7 @@ using Unity.Netcode;
 
 public class PlayerInput : NetworkBehaviour
 {
-    GameManagerScript gameMan;
+    public GameManagerScript gameMan;
     
     public NetworkVariable<bool> isReady = new NetworkVariable<bool>(false);
 
