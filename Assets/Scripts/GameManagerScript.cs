@@ -79,12 +79,10 @@ public class GameManagerScript : NetworkBehaviour
 
 		if(everyoneReady)
 		{
-			print("Start the game were all ready");
 			NotifyClientsClientRpc("Start the game were all ready");
 		}
 		else
 		{
-			print("We stay waiting");
 			NotifyClientsClientRpc("We stay waiting");
 		}
 	}
