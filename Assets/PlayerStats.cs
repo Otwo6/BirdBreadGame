@@ -9,6 +9,7 @@ public class PlayerStats : NetworkBehaviour
 {
     public NetworkVariable<FixedString128Bytes> playerName = new NetworkVariable<FixedString128Bytes>("Player");
     public TMP_Text nameText;
+    public string name;
 
     void Start()
     {
@@ -17,14 +18,7 @@ public class PlayerStats : NetworkBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown("r"))
-        {
-            if(IsOwner)
-            {
-                playerName.Value = new FixedString128Bytes("Test");
-            }
-        }
-
         nameText.text = playerName.Value.ToString();
+        name = playerName.Value.ToString();
     }
 }

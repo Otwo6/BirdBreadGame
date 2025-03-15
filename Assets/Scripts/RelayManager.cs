@@ -19,6 +19,7 @@ public class RelayManager : MonoBehaviour
     [SerializeField] Button joinButton;
     [SerializeField] TMP_InputField joinInput;
     [SerializeField] TextMeshProUGUI codeText;
+    [SerializeField] TMP_InputField nameInput;
 
 	[SerializeField] GameObject joinWidget;
 	[SerializeField] GameObject playerHUD;
@@ -46,6 +47,7 @@ public class RelayManager : MonoBehaviour
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
 
         NetworkManager.Singleton.StartHost();
+        SetName();
     }
 
     async void JoinRelay(string joinCode) {
@@ -57,5 +59,27 @@ public class RelayManager : MonoBehaviour
 		joinWidget.SetActive(false);
 		playerHUD.SetActive(true);
 		codeText.text = "Code: " + joinCode; 
+        SetName();
+    }
+
+    void SetName()
+    {
+        GameObject playerChar = NetworkManager.Singleton.LocalClient.PlayerObject.gameObject;
+        if(playerChar != null)
+        {
+            PlayerStats stats = playerChar.GetComponent<PlayerStats>();
+
+            if(stats != null)
+            {
+                if(!string.IsNullOrEmpty(nameInput.text))
+                {
+                    stats.playerName.Value = nameInput.text;
+                }
+            }
+            else
+            {
+                print("Doesn't wanna work bc screw you");
+            }
+        }
     }
 }
