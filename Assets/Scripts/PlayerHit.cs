@@ -25,6 +25,12 @@ public class PlayerHit : MonoBehaviour
 				hitInv.SetHasBread(false);
 				myInv.SetHasBread(true);
 			}
+			else if(myInv.GetHasBread())
+			{
+				myInv.SetCanUpdate();
+				myInv.SetHasBread(false);
+				hitInv.SetHasBread(true);
+			}
 		}
 	}
 }
