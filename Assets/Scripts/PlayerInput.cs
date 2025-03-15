@@ -18,17 +18,35 @@ public class PlayerInput : NetworkBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            if(!isReady.Value)
+            if (IsServer)
             {
-                isReady.Value = true;
-                gameMan.CheckPlayersReady();
-                print("Ready");
+                ToggleReadyState();
             }
             else
             {
-                isReady.Value = false;
-                print("Unready");
+                RequestReadyStateToggleServerRpc();
             }
+        }
+    }
+
+    [ServerRpc]
+    void RequestReadyStateToggleServerRpc(ServerRpcParams rpcParams = default)
+    {
+        ToggleReadyState();
+    }
+
+    void ToggleReadyState()
+    {
+        if (!isReady.Value)
+        {
+            isReady.Value = true;
+            gameMan.CheckPlayersReady();
+            print("Ready");
+        }
+        else
+        {
+            isReady.Value = false;
+            print("Unready");
         }
     }
 }
