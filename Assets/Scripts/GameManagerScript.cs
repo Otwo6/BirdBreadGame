@@ -7,10 +7,10 @@ using TMPro;
 public class GameManagerScript : NetworkBehaviour
 {
 	public NetworkVariable<float> timeRemaining = new NetworkVariable<float>(60f);
-	public bool timerIsRunning = false;
+	public NetworkVariable<bool> timerIsRunning = new NetworkVariable<bool>(false);
 
-	NetworkVariable<float> countdownTimeRemaining = new NetworkVariable<float>(5f);
-	bool countdownTimerRunning = false;
+	NetworkVariable<float> countdownTimeRemaining = new NetworkVariable<float>(6f);
+	NetworkVariable<bool> countdownTimerRunning = new NetworkVariable<bool>(false);
 
 	public TMP_Text timerText;
 	public TMP_Text countdownText;
@@ -20,7 +20,7 @@ public class GameManagerScript : NetworkBehaviour
 	void Update()
 	{
 		// If the timer is running
-		if (timerIsRunning)
+		if (timerIsRunning.Value)
 		{
 			if (timeRemaining.Value > 0)
 			{
@@ -31,23 +31,23 @@ public class GameManagerScript : NetworkBehaviour
 			{
 				// Timer reaches zero
 				timeRemaining.Value = 0;
-				timerIsRunning = false;
+				timerIsRunning.Value = false;
 				TimerComplete();  // Call a function when the timer ends
 			}
 		}
 
-		if (countdownTimerRunning)
+		if (countdownTimerRunning.Value)
 		{
-			if (countdownTimeRemaining.Value > 0f)
+			if (countdownTimeRemaining.Value > 1f)
 			{
 				countdownTimeRemaining.Value -= Time.deltaTime;  // Subtract time
-				UpdateTimerUI();  // Update the UI with the remaining time
+				UpdateCountdownUI();  // Update the UI with the remaining time
 			}
 			else
 			{
 				// Timer reaches zero
 				countdownTimeRemaining.Value = 0;
-				countdownTimerRunning = false;
+				countdownTimerRunning.Value = false;
 				CountDownComplete();  // Call a function when the timer ends
 			}
 		}
@@ -69,9 +69,10 @@ public class GameManagerScript : NetworkBehaviour
 
 	void UpdateCountdownUI()
 	{
+		int time = (int)countdownTimeRemaining.Value;
 		if (countdownText != null)
 		{
-			countdownText.text = countdownTimeRemaining.Value.ToString();
+			countdownText.text = time.ToString();
 		}
 	}
 
@@ -84,7 +85,7 @@ public class GameManagerScript : NetworkBehaviour
 
 	void CountDownComplete()
 	{
-		timerIsRunning = true;
+		timerIsRunning.Value = true;
 	}
 
 	[ServerRpc(RequireOwnership = false)]
@@ -125,6 +126,6 @@ public class GameManagerScript : NetworkBehaviour
 
 	void StartGame()
 	{
-		countdownTimerRunning = true;
+		countdownTimerRunning.Value = true;
 	}
 }
