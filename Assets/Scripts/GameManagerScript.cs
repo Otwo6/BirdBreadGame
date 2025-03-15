@@ -13,15 +13,6 @@ public class GameManagerScript : NetworkBehaviour
 
 	private NetworkVariable<int> playersReady = new NetworkVariable<int>(0);
 
-	void Start()
-	{
-		// Start the timer when the game begins
-		if (timeRemaining > 0)
-		{
-			timerIsRunning = true;
-		}
-	}
-
 	void Update()
 	{
 		// If the timer is running
@@ -30,7 +21,7 @@ public class GameManagerScript : NetworkBehaviour
 			if (timeRemaining > 0)
 			{
 				timeRemaining -= Time.deltaTime;  // Subtract time
-				//UpdateTimerUI();  // Update the UI with the remaining time
+				UpdateTimerUI();  // Update the UI with the remaining time
 			}
 			else
 			{
@@ -80,6 +71,7 @@ public class GameManagerScript : NetworkBehaviour
 		if(everyoneReady)
 		{
 			NotifyClientsClientRpc("Start the game were all ready");
+			timerIsRunning = true;
 		}
 		else
 		{
