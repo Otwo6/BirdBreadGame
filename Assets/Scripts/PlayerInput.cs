@@ -26,7 +26,7 @@ public class PlayerInput : NetworkBehaviour
             if(IsOwner)
             {
                 isReady.Value = !isReady.Value;
-                gameMan.CheckPlayersReady();
+                GameObject.FindWithTag("GameManager").GetComponent<GameManagerScript>().CheckPlayersReady();
             }
         }
     }

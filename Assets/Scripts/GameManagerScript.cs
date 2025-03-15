@@ -89,7 +89,7 @@ public class GameManagerScript : NetworkBehaviour
 
 	public void CheckPlayersReady()
     {
-        if (IsServer)
+        if (true)
         {
             CheckPlayersReadyServerRpc();
         }
