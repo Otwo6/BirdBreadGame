@@ -6,7 +6,7 @@ using TMPro;
 
 public class GameManagerScript : NetworkBehaviour
 {
-	public NetworkVariable<float> timeRemaining = new NetworkVariable<float>(60f);
+	public NetworkVariable<float> timeRemaining = new NetworkVariable<float>(100f);
 	public NetworkVariable<bool> timerIsRunning = new NetworkVariable<bool>(false);
 
 	NetworkVariable<float> countdownTimeRemaining = new NetworkVariable<float>(6f);
