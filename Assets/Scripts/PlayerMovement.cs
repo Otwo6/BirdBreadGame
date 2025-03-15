@@ -33,7 +33,7 @@ public class PlayerMovement : NetworkBehaviour
         float yaw = Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime;
         transform.Rotate(Vector3.up * yaw);
 
-		if (Input.GetKeyDown(KeyCode.P))
+		if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(Vector3.up * flapHeight, ForceMode.Impulse);
             print("JUMP JUMP");

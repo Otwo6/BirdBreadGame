@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using TMPro;
 
@@ -9,6 +10,8 @@ public class GameManagerScript : MonoBehaviour
 	public bool timerIsRunning = false;
 
 	public TMP_Text timerText;  // To display the countdown in UI (optional)
+
+	private NetworkVariable<int> playersReady = new NetworkVariable<int>(0);
 
 	void Start()
 	{
@@ -58,5 +61,28 @@ public class GameManagerScript : MonoBehaviour
 		// Action to take when the timer reaches zero
 		Debug.Log("Time's up!");
 		// You can call any function here, like ending the game or triggering an event
+	}
+
+	public void AddPlayerReady()
+	{
+		playersReady.Value++;
+		CheckPlayersReady();
+	}
+
+	void CheckPlayersReady()
+	{
+		if(playersReady.Value == GameObject.FindGameObjectsWithTag("Player").Length)
+		{
+			print("WEE READY");
+		}
+		else
+		{
+			print("Didnt work bc " + playersReady + " And not " + GameObject.FindGameObjectsWithTag("Player").Length);
+		}
+	}
+
+	public void RemovePlayerReady()
+	{
+		playersReady.Value--;
 	}
 }

@@ -9,7 +9,7 @@ public class DiscScript : MonoBehaviour
 
     public bool inPlayerRange = false;
 
-    public ParticleSystem particleSystem;
+    public ParticleSystem hitParticleSystem;
 	
 	private bool canHit = true;
     
@@ -29,7 +29,7 @@ public class DiscScript : MonoBehaviour
 			if(canHit)
 			{
 				StartCoroutine(DelayHit());
-				particleSystem.Play();
+				hitParticleSystem.Play();
 				
 				Debug.DrawRay(transform.position, forwardDirection, Color.blue);
 				

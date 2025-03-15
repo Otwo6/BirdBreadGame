@@ -298,9 +298,10 @@ GameObject:
   - component: {fileID: 5226122543403405743}
   - component: {fileID: 5578813217853008811}
   - component: {fileID: 8355915180894177431}
+  - component: {fileID: 5013202225856007326}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -456,6 +457,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasBread: 0
   breadHat: {fileID: 2598848149409811350}
+--- !u!114 &5013202225856007326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734718793299391901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 366b330568171d74b89a5ce0b91eda38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5441019032569591077
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,7 +483,7 @@ GameObject:
   - component: {fileID: 5155832042884123639}
   m_Layer: 0
   m_Name: PlayerView
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

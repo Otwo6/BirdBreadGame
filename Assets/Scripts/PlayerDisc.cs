@@ -6,7 +6,7 @@ public class PlayerDisc : NetworkBehaviour
 {
     [SerializeField] GameObject discPrefab;
     [SerializeField] Transform throwLocation; // Use Transform for position/rotation
-    [SerializeField] GameObject camera;
+    [SerializeField] GameObject cam;
     [SerializeField] GameObject handDisc;
     [SerializeField] float callBackWaitTime;
 
@@ -89,7 +89,7 @@ public class PlayerDisc : NetworkBehaviour
             {
                 disc.transform.position = position;
                 disc.transform.rotation = rotation;
-                disc.SetForwardDirection(camera.transform.forward);
+                disc.SetForwardDirection(cam.transform.forward);
                 Debug.Log("Disc spawned at: " + position);
             }
         }
