@@ -1730,7 +1730,7 @@ MonoBehaviour:
   timeRemaining: 100
   timerIsRunning: 0
   timerText: {fileID: 2572830}
-  countdownText: {fileID: 0}
+  countdownText: {fileID: 314162587}
 --- !u!114 &1007039004
 MonoBehaviour:
   m_ObjectHideFlags: 0

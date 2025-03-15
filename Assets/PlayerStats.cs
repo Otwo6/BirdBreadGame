@@ -11,14 +11,8 @@ public class PlayerStats : NetworkBehaviour
     public TMP_Text nameText;
     public string name;
 
-    void Start()
-    {
-        nameText = GameObject.FindWithTag("Respawn").GetComponent<TMP_Text>();
-    }
-
     void Update()
     {
-        nameText.text = playerName.Value.ToString();
         name = playerName.Value.ToString();
     }
 

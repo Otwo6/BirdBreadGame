@@ -6,10 +6,10 @@ using TMPro;
 
 public class GameManagerScript : NetworkBehaviour
 {
-	public float timeRemaining = 60f;  // Timer in seconds
+	public NetworkVariable<float> timeRemaining = new NetworkVariable<float>(60f);
 	public bool timerIsRunning = false;
 
-	float countdownTimeRemaining = 5f;
+	NetworkVariable<float> countdownTimeRemaining = new NetworkVariable<float>(5f);
 	bool countdownTimerRunning = false;
 
 	public TMP_Text timerText;
@@ -22,15 +22,15 @@ public class GameManagerScript : NetworkBehaviour
 		// If the timer is running
 		if (timerIsRunning)
 		{
-			if (timeRemaining > 0)
+			if (timeRemaining.Value > 0)
 			{
-				timeRemaining -= Time.deltaTime;  // Subtract time
+				timeRemaining.Value -= Time.deltaTime;  // Subtract time
 				UpdateTimerUI();  // Update the UI with the remaining time
 			}
 			else
 			{
 				// Timer reaches zero
-				timeRemaining = 0;
+				timeRemaining.Value = 0;
 				timerIsRunning = false;
 				TimerComplete();  // Call a function when the timer ends
 			}
@@ -38,15 +38,15 @@ public class GameManagerScript : NetworkBehaviour
 
 		if (countdownTimerRunning)
 		{
-			if (countdownTimeRemaining > 0f)
+			if (countdownTimeRemaining.Value > 0f)
 			{
-				countdownTimeRemaining -= Time.deltaTime;  // Subtract time
+				countdownTimeRemaining.Value -= Time.deltaTime;  // Subtract time
 				UpdateTimerUI();  // Update the UI with the remaining time
 			}
 			else
 			{
 				// Timer reaches zero
-				countdownTimeRemaining = 0;
+				countdownTimeRemaining.Value = 0;
 				countdownTimerRunning = false;
 				CountDownComplete();  // Call a function when the timer ends
 			}
@@ -56,8 +56,8 @@ public class GameManagerScript : NetworkBehaviour
 	void UpdateTimerUI()
 	{
 		// Format the time as minutes and seconds, e.g., "02:45"
-		float minutes = Mathf.Floor(timeRemaining / 60);
-		float seconds = timeRemaining % 60;
+		float minutes = Mathf.Floor(timeRemaining.Value / 60);
+		float seconds = timeRemaining.Value % 60;
 		string timeFormatted = string.Format("{0:00}:{1:00}", minutes, seconds);
 
 		// Update the UI text (if there is a UI element set)
@@ -71,7 +71,7 @@ public class GameManagerScript : NetworkBehaviour
 	{
 		if (countdownText != null)
 		{
-			countdownText.text = countdownTimeRemaining.ToString();
+			countdownText.text = countdownTimeRemaining.Value.ToString();
 		}
 	}
 
