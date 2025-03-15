@@ -17,7 +17,7 @@ public class PlayerHit : MonoBehaviour
 		if(otherPlayer.tag == "Player")
 		{
 			print("Hit a player");
-			PlayerInventory hitInv = otherPlayer.GetComponent<PlayerInventory>();
+			PlayerInventory hitInv = otherPlayer.GetComponentInParent<PlayerInventory>();
 
 			if(hitInv.GetHasBread())
 			{
