@@ -63,28 +63,26 @@ public class GameManagerScript : MonoBehaviour
 		// You can call any function here, like ending the game or triggering an event
 	}
 
-	[ServerRpc]
-	public void AddPlayerReady()
+	public void CheckPlayersReady()
 	{
-		playersReady.Value++;
-		CheckPlayersReady();
-	}
-
-	void CheckPlayersReady()
-	{
-		if(playersReady.Value == GameObject.FindGameObjectsWithTag("Player").Length)
+		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+		bool everyoneReady = true;
+		for(int i = 0; i < players.Length; i++)
 		{
-			print("WEE READY");
+			if(!players[i].GetComponent<PlayerInput>().isReady)
+			{
+				everyoneReady = false;
+				break;
+			}
+		}
+
+		if(everyoneReady)
+		{
+			print("Start the game were all ready");
 		}
 		else
 		{
-			print("Didnt work bc " + playersReady + " And not " + GameObject.FindGameObjectsWithTag("Player").Length);
+			print("We stay waiting");
 		}
-	}
-
-	[ServerRpc]
-	public void RemovePlayerReady()
-	{
-		playersReady.Value--;
 	}
 }

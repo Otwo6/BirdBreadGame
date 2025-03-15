@@ -6,7 +6,7 @@ public class PlayerInput : MonoBehaviour
 {
     GameManagerScript gameMan;
     
-    bool isReady = false;
+    public bool isReady = false;
 
     void Start()
     {
@@ -20,14 +20,13 @@ public class PlayerInput : MonoBehaviour
             if(!isReady)
             {
                 isReady = true;
-                gameMan.AddPlayerReady();
-                print("Somethings happening here");
+                gameMan.CheckPlayersReady();
+                print("Ready");
             }
             else
             {
                 isReady = false;
-                gameMan.RemovePlayerReady();
-                print("Somethings happening heree");
+                print("Unready");
             }
         }
     }
