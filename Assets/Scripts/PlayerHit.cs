@@ -22,12 +22,14 @@ public class PlayerHit : MonoBehaviour
 			if(hitInv.GetHasBread())
 			{
 				hitInv.SetCanUpdate();
+				myInv.SetCanUpdate();
 				hitInv.SetHasBread(false);
 				myInv.SetHasBread(true);
 			}
 			else if(myInv.GetHasBread())
 			{
 				myInv.SetCanUpdate();
+				hitInv.SetCanUpdate();
 				myInv.SetHasBread(false);
 				hitInv.SetHasBread(true);
 			}
