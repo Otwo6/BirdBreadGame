@@ -49,8 +49,8 @@ public class GameManagerScript : NetworkBehaviour
 				if(IsServer)
 				{
 					countdownTimeRemaining.Value -= Time.deltaTime;  // Subtract time
+					UpdateCountdownUI();  // Update the UI with the remaining time
 				}
-				UpdateCountdownUI();  // Update the UI with the remaining time
 			}
 			else
 			{
@@ -60,11 +60,8 @@ public class GameManagerScript : NetworkBehaviour
 				CountDownComplete();  // Call a function when the timer ends
 			}
 		}
-
-		if(IsServer)
-		{
-			countdownText.text = countdownTextValue.Value.ToString();
-		}
+		
+		countdownText.text = countdownTextValue.Value.ToString();
 	}
 
 	void UpdateTimerUI()
@@ -92,7 +89,7 @@ public class GameManagerScript : NetworkBehaviour
 
 	void SetCountdownText(string text)
 	{
-		if (countdownText != null)
+		if (countdownText != null && IsServer)
 		{
 			countdownTextValue.Value = text;
 		}
