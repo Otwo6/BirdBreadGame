@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -17,7 +18,7 @@ public class GameManagerScript : NetworkBehaviour
 
 	private NetworkVariable<int> playersReady = new NetworkVariable<int>(0);
 
-	public NetworkVariable<string> countdownTextValue = new NetworkVariable<string>("");
+	public NetworkVariable<FixedString128Bytes> countdownTextValue = new NetworkVariable<FixedString128Bytes>("");
 
 	void Update()
 	{
@@ -60,7 +61,7 @@ public class GameManagerScript : NetworkBehaviour
 			}
 		}
 
-		countdownText.text = countdownTextValue.Value;
+		countdownText.text = countdownTextValue.Value.ToString();
 	}
 
 	void UpdateTimerUI()
