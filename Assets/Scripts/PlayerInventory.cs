@@ -22,7 +22,13 @@ public class PlayerInventory : NetworkBehaviour
 				networkHasBread.Value = has; // This will automatically sync across clients
             	SetBreadHatActiveOnClients(has); // Ensure the clients update the GameObject state
 				SetCanUpdate();
+                print("Worked now i have ? " + has);
 			}
+            print("phuck you");
+        }
+        else
+        {
+            print("nah");
         }
     }
 

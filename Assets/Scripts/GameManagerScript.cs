@@ -92,6 +92,7 @@ public class GameManagerScript : NetworkBehaviour
 	void CountDownComplete()
 	{
 		timerIsRunning.Value = true;
+		GiveFirstBread();
 	}
 
 	[ServerRpc(RequireOwnership = false)]
@@ -133,5 +134,15 @@ public class GameManagerScript : NetworkBehaviour
 	void StartGame()
 	{
 		countdownTimerRunning.Value = true;
+		
+	}
+
+	void GiveFirstBread()
+	{
+		GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
+
+		int firstBread = Random.Range(0, allPlayers.Length-1);
+
+		allPlayers[firstBread].GetComponentInParent<PlayerInventory>().SetHasBread(true);
 	}
 }
