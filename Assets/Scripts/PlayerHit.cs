@@ -39,7 +39,9 @@ public class PlayerHit : MonoBehaviour
         }
 		else
 		{
+            // Not a player
 			print("Hit " + otherPlayer);
+            GetComponent<PlayerMovement>().StopVelocity();
 		}
     }
 }

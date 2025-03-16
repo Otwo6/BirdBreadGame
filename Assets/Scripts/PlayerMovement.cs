@@ -7,7 +7,8 @@ using Unity.Netcode;
 [RequireComponent(typeof(OwnerNetworkAnimator))]
 public class PlayerMovement : NetworkBehaviour
 {
-	public float speed = 10f; // Forward speed
+	float speed = 10f; // Forward speed
+    public float maxSpeed = 10f;
     public float turnSpeed = 50f; // Rotation speed
     public float liftStrength = 10f; // How much lift the plane generates
     public float gravityScale = 9.8f; // Simulated gravity strength
@@ -49,5 +50,24 @@ public class PlayerMovement : NetworkBehaviour
         // Calculate lift based on forward speed and pitch angle
         float lift = Mathf.Max(0, Vector3.Dot(transform.up, Vector3.up)) * liftStrength;
         rb.AddForce(Vector3.up * lift - Vector3.up * gravityScale, ForceMode.Acceleration);
+    }
+
+    public void StopVelocity()
+    {
+        rb.linearVelocity = new Vector3(0f, 0f, 0f);
+        speed = 2f;
+
+        StartCoroutine(RegainSpeed());
+    }
+
+    IEnumerator RegainSpeed()
+    {
+        while(speed < maxSpeed)
+        {
+            speed += Time.deltaTime * 2f;
+            yield return null;
+        }
+
+        speed = maxSpeed;
     }
 }
