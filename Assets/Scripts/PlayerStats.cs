@@ -9,11 +9,11 @@ public class PlayerStats : NetworkBehaviour
 {
     public NetworkVariable<FixedString128Bytes> playerName = new NetworkVariable<FixedString128Bytes>("Player");
     public TMP_Text nameText;
-    public string name;
+    public string characterName;
 
     void Update()
     {
-        name = playerName.Value.ToString();
+        characterName = playerName.Value.ToString();
     }
 
     [ServerRpc(RequireOwnership = false)]

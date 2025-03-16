@@ -13,6 +13,8 @@ public class PlayerMovement : NetworkBehaviour
     private Rigidbody rb;
 	public float flapHeight;
 
+    [SerializeField] Animator anim;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -36,6 +38,7 @@ public class PlayerMovement : NetworkBehaviour
 		if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(Vector3.up * flapHeight, ForceMode.Impulse);
+            anim.Play("FlyingFlap");
             print("JUMP JUMP");
         }
     }
