@@ -4,35 +4,38 @@ using UnityEngine;
 
 public class PlayerHit : MonoBehaviour
 {
-	PlayerInventory myInv;
+    PlayerInventory myInv;
 
-	void Start()
-	{
-		myInv = GetComponent<PlayerInventory>();
-	}
+    void Start()
+    {
+        myInv = GetComponent<PlayerInventory>();
+    }
 
-	void OnCollisionEnter(Collision col)
-	{
-		GameObject otherPlayer = col.gameObject;
-		if(otherPlayer.tag == "Player")
-		{
-			print("Hit a player");
-			PlayerInventory hitInv = otherPlayer.GetComponentInParent<PlayerInventory>();
+    void OnCollisionEnter(Collision col)
+    {
+        GameObject otherPlayer = col.gameObject;
+        if (otherPlayer.CompareTag("Player"))
+        {
+            Debug.Log("Hit a player");
 
-			if(hitInv.GetHasBread())
-			{
-				hitInv.SetHasBread(false);
-				myInv.SetHasBread(true);
+            PlayerInventory hitInv = otherPlayer.GetComponentInParent<PlayerInventory>();
 
-				print("I " + gameObject + " take the bread");
-			}
-			else if(myInv.GetHasBread())
-			{
-				myInv.SetHasBread(false);
-				hitInv.SetHasBread(true);
+            if (hitInv.GetHasBread())
+            {
+                // Transfer bread from hit player to this player
+                hitInv.SetHasBreadServerRpc(false); // Update on the server
+                myInv.SetHasBreadServerRpc(true);   // Update on the server
 
-				print("give " + otherPlayer + " the bread");
-			}
-		}
-	}
+                Debug.Log($"I {gameObject.name} take the bread");
+            }
+            else if (myInv.GetHasBread())
+            {
+                // Transfer bread from this player to hit player
+                myInv.SetHasBreadServerRpc(false); // Update on the server
+                hitInv.SetHasBreadServerRpc(true);  // Update on the server
+
+                Debug.Log($"Give {otherPlayer.name} the bread");
+            }
+        }
+    }
 }

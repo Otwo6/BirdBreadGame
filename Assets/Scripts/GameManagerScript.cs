@@ -143,6 +143,6 @@ public class GameManagerScript : NetworkBehaviour
 
 		int firstBread = Random.Range(0, allPlayers.Length-1);
 
-		allPlayers[firstBread].GetComponentInParent<PlayerInventory>().SetHasBread(true);
+		allPlayers[firstBread].GetComponentInParent<PlayerInventory>().SetHasBreadServerRpc(true);
 	}
 }
