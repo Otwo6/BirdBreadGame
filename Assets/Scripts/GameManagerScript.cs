@@ -129,6 +129,7 @@ public class GameManagerScript : NetworkBehaviour
 	{
 		timerIsRunning.Value = true;
 		SetCountdownTextServerRpc("");
+		SetCountdownTextClientRpc("");
 		GiveFirstBread();
 	}
 
