@@ -23,6 +23,7 @@ public class RelayManager : MonoBehaviour
 
 	[SerializeField] GameObject joinWidget;
 	[SerializeField] GameObject playerHUD;
+    [SerializeField] GameObject startCam;
 
     // Start is called before the first frame update
     async void Start() {
@@ -40,6 +41,7 @@ public class RelayManager : MonoBehaviour
         string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 		joinWidget.SetActive(false);
 		playerHUD.SetActive(true);
+        Destroy(startCam);
 		codeText.text = "Code: " + joinCode; 
 
         var relayServerData = new RelayServerData(allocation, "dtls");
@@ -58,6 +60,7 @@ public class RelayManager : MonoBehaviour
         NetworkManager.Singleton.StartClient();
 		joinWidget.SetActive(false);
 		playerHUD.SetActive(true);
+        Destroy(startCam);
 		codeText.text = "Code: " + joinCode; 
         StartCoroutine(DelaySetName());
     }
