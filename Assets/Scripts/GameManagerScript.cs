@@ -54,6 +54,7 @@ public class GameManagerScript : NetworkBehaviour
 				// Timer reaches zero
 				countdownTimeRemaining.Value = 0;
 				countdownTimerRunning.Value = false;
+				ClearCountdownUI();
 				CountDownComplete();  // Call a function when the timer ends
 			}
 		}
@@ -79,6 +80,14 @@ public class GameManagerScript : NetworkBehaviour
 		if (countdownText != null)
 		{
 			countdownText.text = time.ToString();
+		}
+	}
+
+	void ClearCountdownUI()
+	{
+		if (countdownText != null)
+		{
+			countdownText.text = "";
 		}
 	}
 
