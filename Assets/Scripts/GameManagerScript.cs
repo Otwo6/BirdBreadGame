@@ -35,7 +35,7 @@ public class GameManagerScript : NetworkBehaviour
 				// Timer reaches zero
 				timeRemaining.Value = 0;
 				timerIsRunning.Value = false;
-				TimerComplete();  // Call a function when the timer ends
+				TimerCompleteServerRpc();  // Call a function when the timer ends
 			}
 		}
 
@@ -82,7 +82,8 @@ public class GameManagerScript : NetworkBehaviour
 		}
 	}
 
-	void TimerComplete()
+	[ServerRpc]
+	void TimerCompleteServerRpc()
 	{
 		// Action to take when the timer reaches zero
 		Debug.Log("Time's up!");
