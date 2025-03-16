@@ -85,6 +85,12 @@ public class GameManagerScript : NetworkBehaviour
 
 	void ClearCountdownUI()
 	{
+		ClearCountdownUIClientRpc();
+	}
+
+	[ClientRpc]
+	void ClearCountdownUIClientRpc()
+	{
 		if (countdownText != null)
 		{
 			countdownText.text = "";
