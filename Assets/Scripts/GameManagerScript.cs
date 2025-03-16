@@ -106,7 +106,7 @@ public class GameManagerScript : NetworkBehaviour
 		foreach(GameObject player in allPlayers)
 		{
 			player.GetComponent<PlayerInput>().isReady.Value = false;
-			player.GetComponent<PlayerInventory>().SetHasBreadServerRpc(false);
+			player.GetComponent<PlayerInventory>().ClearHasBreadServerRpc();
 		}
 	}
 

@@ -25,6 +25,14 @@ public class PlayerInventory : NetworkBehaviour
         }
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    public void ClearHasBreadServerRpc()
+    {
+        networkHasBread.Value = false; // This will automatically sync across clients
+        SetBreadHatActiveOnClientsClientRpc (false); // Ensure the clients update the GameObject state
+        Debug.Log($"Server updated bread state to: {false}");
+    }
+
     // ClientRpc to update bread hat state for all clients
     [ClientRpc]
     public void SetBreadHatActiveOnClientsClientRpc(bool has)
