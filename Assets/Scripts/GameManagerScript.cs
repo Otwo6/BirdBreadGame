@@ -86,7 +86,28 @@ public class GameManagerScript : NetworkBehaviour
 	{
 		// Action to take when the timer reaches zero
 		Debug.Log("Time's up!");
-		// You can call any function here, like ending the game or triggering an event
+		
+		GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
+		foreach(GameObject player in allPlayers)
+		{
+			if(player.GetComponent<PlayerInventory>().GetHasBread())
+			{
+				countdownText.text = (player.GetComponent<PlayerStats>().characterName + " has won");
+				break;
+			}
+		}
+
+		timerIsRunning.Value = false;
+		timeRemaining.Value = 100.0f;
+		countdownTimerRunning.Value = false;
+		countdownTimeRemaining.Value = 6.0f;
+		timerText.text = "Waiting For Players To Ready";
+
+		foreach(GameObject player in allPlayers)
+		{
+			player.GetComponent<PlayerInput>().isReady.Value = false;
+			player.GetComponent<PlayerInventory>().SetHasBreadServerRpc(false);
+		}
 	}
 
 	void CountDownComplete()

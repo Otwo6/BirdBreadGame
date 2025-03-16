@@ -19,7 +19,7 @@ public class PlayerInventory : NetworkBehaviour
         if (canUpdate)
         {
             networkHasBread.Value = has; // This will automatically sync across clients
-            SetBreadHatActiveOnClientsClientRpc(has); // Ensure the clients update the GameObject state
+            SetBreadHatActiveOnClientsClientRpc (has); // Ensure the clients update the GameObject state
             SetCanUpdate();
             Debug.Log($"Server updated bread state to: {has}");
         }
