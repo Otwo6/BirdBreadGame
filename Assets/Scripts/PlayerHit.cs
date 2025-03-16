@@ -37,5 +37,9 @@ public class PlayerHit : MonoBehaviour
                 Debug.Log($"Give {otherPlayer.name} the bread");
             }
         }
+		else
+		{
+			print("Hit " + otherPlayer);
+		}
     }
 }

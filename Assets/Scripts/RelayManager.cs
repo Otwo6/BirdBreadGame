@@ -75,6 +75,10 @@ public class RelayManager : MonoBehaviour
                 {
                     stats.SetPlayerNameServerRpc(nameInput.text);
                 }
+                else
+                {
+                    stats.SetPlayerNameServerRpc("Player " + GameObject.FindGameObjectsWithTag("Player").Length);
+                }
             }
             else
             {
