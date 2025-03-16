@@ -35,7 +35,7 @@ public class GameManagerScript : NetworkBehaviour
 				// Timer reaches zero
 				timeRemaining.Value = 0;
 				timerIsRunning.Value = false;
-				TimerCompleteServerRpc();  // Call a function when the timer ends
+				TimerComplete();  // Call a function when the timer ends
 			}
 		}
 
@@ -82,8 +82,7 @@ public class GameManagerScript : NetworkBehaviour
 		}
 	}
 
-	[ServerRpc]
-	void TimerCompleteServerRpc()
+	void TimerComplete()
 	{
 		// Action to take when the timer reaches zero
 		Debug.Log("Time's up!");
@@ -106,7 +105,7 @@ public class GameManagerScript : NetworkBehaviour
 
 		foreach(GameObject player in allPlayers)
 		{
-			player.GetComponent<PlayerInput>().isReady.Value = false;
+			player.GetComponent<PlayerInput>().SetReadyServerRpc(false);
 			player.GetComponent<PlayerInventory>().ClearHasBreadServerRpc();
 		}
 	}

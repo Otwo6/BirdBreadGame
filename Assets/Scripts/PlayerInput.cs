@@ -30,4 +30,17 @@ public class PlayerInput : NetworkBehaviour
             }
         }
     }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void SetReadyServerRpc(bool has)
+    {
+        isReady.Value = has;
+        SetReadyClientRpc(has);
+    }
+
+    [ClientRpc]
+    void SetReadyClientRpc(bool has)
+    {
+        isReady.Value = has;
+    }
 }
