@@ -17,6 +17,8 @@ public class GameManagerScript : NetworkBehaviour
 
 	private NetworkVariable<int> playersReady = new NetworkVariable<int>(0);
 
+	public NetworkVariable<string> countdownTextValue = new NetworkVariable<string>("");
+
 	void Update()
 	{
 		// If the timer is running
@@ -57,6 +59,8 @@ public class GameManagerScript : NetworkBehaviour
 				CountDownComplete();  // Call a function when the timer ends
 			}
 		}
+
+		countdownText.text = countdownTextValue.Value;
 	}
 
 	void UpdateTimerUI()
@@ -78,22 +82,15 @@ public class GameManagerScript : NetworkBehaviour
 		int time = (int)countdownTimeRemaining.Value;
 		if (countdownText != null)
 		{
-			countdownText.text = time.ToString();
+			countdownTextValue.Value = time.ToString();
 		}
 	}
 
-	[ServerRpc]
-	void SetCountdownTextServerRpc(string text)
-	{
-		SetCountdownTextClientRpc(text);
-	}
-
-	[ClientRpc]
-	void SetCountdownTextClientRpc(string text)
+	void SetCountdownText(string text)
 	{
 		if (countdownText != null)
 		{
-			countdownText.text = text;
+			countdownTextValue.Value = text;
 		}
 	}
 
@@ -107,7 +104,7 @@ public class GameManagerScript : NetworkBehaviour
 		{
 			if(player.GetComponent<PlayerInventory>().GetHasBread())
 			{
-				SetCountdownTextServerRpc(player.GetComponent<PlayerStats>().characterName + " has won");
+				SetCountdownText(player.GetComponent<PlayerStats>().characterName + " has won");
 				break;
 			}
 		}
@@ -128,8 +125,7 @@ public class GameManagerScript : NetworkBehaviour
 	void CountDownComplete()
 	{
 		timerIsRunning.Value = true;
-		SetCountdownTextServerRpc("");
-		SetCountdownTextClientRpc("");
+		SetCountdownText("");
 		GiveFirstBread();
 	}
 
