@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 5013202225856007326}
   - component: {fileID: 7633226861799856227}
   - component: {fileID: 6631422411542926383}
+  - component: {fileID: 8285473998246878495}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -342,7 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f8429aca4ac81d4a9ebf692d3c0a896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  maxSpeed: 10
   turnSpeed: 50
   liftStrength: 10
   gravityScale: 11
@@ -629,6 +630,18 @@ MonoBehaviour:
     TriggerNameHash: 1343785095
     TransitionIndex: 0
   m_Animator: {fileID: 6355221331663931321}
+--- !u!114 &8285473998246878495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734718793299391901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921fe259a1038044fbdf44d6664ffb65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5441019032569591077
 GameObject:
   m_ObjectHideFlags: 0
