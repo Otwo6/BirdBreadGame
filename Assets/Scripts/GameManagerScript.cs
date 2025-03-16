@@ -61,7 +61,10 @@ public class GameManagerScript : NetworkBehaviour
 			}
 		}
 
-		countdownText.text = countdownTextValue.Value.ToString();
+		if(IsServer)
+		{
+			countdownText.text = countdownTextValue.Value.ToString();
+		}
 	}
 
 	void UpdateTimerUI()
