@@ -87,29 +87,26 @@ public class GameManagerScript : NetworkBehaviour
 		// Action to take when the timer reaches zero
 		Debug.Log("Time's up!");
 		
-		if(IsServer)
+		GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
+		foreach(GameObject player in allPlayers)
 		{
-			GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
-			foreach(GameObject player in allPlayers)
+			if(player.GetComponent<PlayerInventory>().GetHasBread())
 			{
-				if(player.GetComponent<PlayerInventory>().GetHasBread())
-				{
-					countdownText.text = (player.GetComponent<PlayerStats>().characterName + " has won");
-					break;
-				}
+				countdownText.text = (player.GetComponent<PlayerStats>().characterName + " has won");
+				break;
 			}
+		}
 
-			timerIsRunning.Value = false;
-			timeRemaining.Value = 100.0f;
-			countdownTimerRunning.Value = false;
-			countdownTimeRemaining.Value = 6.0f;
-			timerText.text = "Waiting For Players To Ready";
+		timerIsRunning.Value = false;
+		timeRemaining.Value = 100.0f;
+		countdownTimerRunning.Value = false;
+		countdownTimeRemaining.Value = 6.0f;
+		timerText.text = "Waiting For Players To Ready";
 
-			foreach(GameObject player in allPlayers)
-			{
-				player.GetComponent<PlayerInput>().isReady.Value = false;
-				player.GetComponent<PlayerInventory>().SetHasBreadServerRpc(false);
-			}
+		foreach(GameObject player in allPlayers)
+		{
+			player.GetComponent<PlayerInput>().isReady.Value = false;
+			player.GetComponent<PlayerInventory>().SetHasBreadServerRpc(false);
 		}
 	}
 
@@ -165,7 +162,7 @@ public class GameManagerScript : NetworkBehaviour
 	{
 		GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
 
-		int firstBread = Random.Range(0, allPlayers.Length-1);
+		int firstBread = Random.Range(0, allPlayers.Length);
 
 		allPlayers[firstBread].GetComponentInParent<PlayerInventory>().SetHasBreadServerRpc(true);
 	}
