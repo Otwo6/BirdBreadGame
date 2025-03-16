@@ -54,7 +54,7 @@ public class GameManagerScript : NetworkBehaviour
 				// Timer reaches zero
 				countdownTimeRemaining.Value = 0;
 				countdownTimerRunning.Value = false;
-				ClearCountdownUI();
+				SetCountdownTextServerRpc("");
 				CountDownComplete();  // Call a function when the timer ends
 			}
 		}
@@ -83,17 +83,18 @@ public class GameManagerScript : NetworkBehaviour
 		}
 	}
 
-	void ClearCountdownUI()
+	[ServerRpc]
+	void SetCountdownTextServerRpc(string text)
 	{
-		ClearCountdownUIClientRpc();
+		SetCountdownTextClientRpc(text);
 	}
 
 	[ClientRpc]
-	void ClearCountdownUIClientRpc()
+	void SetCountdownTextClientRpc(string text)
 	{
 		if (countdownText != null)
 		{
-			countdownText.text = "";
+			countdownText.text = text;
 		}
 	}
 
@@ -107,7 +108,7 @@ public class GameManagerScript : NetworkBehaviour
 		{
 			if(player.GetComponent<PlayerInventory>().GetHasBread())
 			{
-				countdownText.text = (player.GetComponent<PlayerStats>().characterName + " has won");
+				SetCountdownTextServerRpc(player.GetComponent<PlayerStats>().characterName + " has won");
 				break;
 			}
 		}
