@@ -35,10 +35,10 @@ public class PlayerMovement : NetworkBehaviour
         float yaw = Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime;
         transform.Rotate(Vector3.up * yaw);
 
-		if (Input.GetKeyDown(KeyCode.Space) && IsOwner)
+		if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(Vector3.up * flapHeight, ForceMode.Impulse);
-            FlapServerRpc();
+            anim.Play("FlyingFlap");
             print("JUMP JUMP");
         }
     }
@@ -48,23 +48,5 @@ public class PlayerMovement : NetworkBehaviour
         // Calculate lift based on forward speed and pitch angle
         float lift = Mathf.Max(0, Vector3.Dot(transform.up, Vector3.up)) * liftStrength;
         rb.AddForce(Vector3.up * lift - Vector3.up * gravityScale, ForceMode.Acceleration);
-    }
-
-    [ServerRpc]
-    private void FlapServerRpc(ServerRpcParams rpcParams = default)
-    {
-        // Call this on the server to sync the animation with all clients
-        FlapClientRpc();
-    }
-
-    // ClientRpc to play the animation on all clients
-    [ClientRpc]
-    private void FlapClientRpc()
-    {
-        if (anim != null)
-        {
-            anim.Play("FlyingFlap");
-            print("Flap animation triggered");
-        }
     }
 }
