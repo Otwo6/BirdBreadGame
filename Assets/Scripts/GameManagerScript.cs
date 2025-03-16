@@ -176,10 +176,13 @@ public class GameManagerScript : NetworkBehaviour
 
 	void GiveFirstBread()
 	{
-		GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
+		if(IsServer)
+		{
+			GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
 
-		int firstBread = Random.Range(0, allPlayers.Length);
+			int firstBread = Random.Range(0, allPlayers.Length);
 
-		allPlayers[firstBread].GetComponentInParent<PlayerInventory>().SetHasBreadServerRpc(true);
+			allPlayers[firstBread].GetComponentInParent<PlayerInventory>().SetHasBreadServerRpc(true);
+		}
 	}
 }
