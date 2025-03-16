@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Netcode;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(OwnerNetworkAnimator))]
 public class PlayerMovement : NetworkBehaviour
 {
 	public float speed = 10f; // Forward speed
@@ -13,7 +14,7 @@ public class PlayerMovement : NetworkBehaviour
     private Rigidbody rb;
 	public float flapHeight;
 
-    [SerializeField] Animator anim;
+    [SerializeField] OwnerNetworkAnimator anim;
 
     void Start()
     {
@@ -38,7 +39,7 @@ public class PlayerMovement : NetworkBehaviour
 		if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(Vector3.up * flapHeight, ForceMode.Impulse);
-            anim.Play("FlyingFlap");
+            anim.SetTrigger("Flap Wings");
             print("JUMP JUMP");
         }
     }
