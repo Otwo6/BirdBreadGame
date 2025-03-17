@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class KonamiCodeChecker : MonoBehaviour
 {
+    public MeshFilter head;
+    public Mesh bluejayHead;
+    public Renderer headMeshRen;
+    public Material headMat;
+
     // The Konami Code sequence (Up, Up, Down, Down, Left, Right, Left, Right, B, A)
     private KeyCode[] konamiCode = new KeyCode[]
     {
@@ -45,6 +50,11 @@ public class KonamiCodeChecker : MonoBehaviour
     {
         Debug.Log("Konami Code entered! You've unlocked the secret!");
         // You can trigger any special event here, e.g., unlocking a cheat, a secret level, etc.
+
+        head.mesh = bluejayHead;
+        Material[] materials = headMeshRen.materials;
+        materials[0] = headMat;
+        headMeshRen.materials = materials; 
     }
 
     // Get the key that was pressed
