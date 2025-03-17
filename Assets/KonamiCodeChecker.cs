@@ -52,31 +52,19 @@ public class KonamiCodeChecker : NetworkBehaviour
         Debug.Log("Konami Code entered! You've unlocked the secret!");
         // You can trigger any special event here, e.g., unlocking a cheat, a secret level, etc.
 
-        NotifyServerOfKonamiCodeEnteredServerRpc(NetworkManager.Singleton.LocalClientId);
+        ChangeMeshClientRpc();
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    private void NotifyServerOfKonamiCodeEnteredServerRpc(ulong clientId, ServerRpcParams rpcParams = default)
-    {
-        // Call the ClientRpc to change the mesh for the specific player who entered the code
-        ChangeMeshClientRpc(clientId);
-    }
-
-    // ClientRpc to change the player's mesh
     [ClientRpc]
-    private void ChangeMeshClientRpc(ulong clientId)
+    private void ChangeMeshClientRpc()
     {
-        if (NetworkManager.Singleton.LocalClientId == clientId)
+        if(IsOwner)
         {
-            // This player entered the code, so change their mesh
             head.mesh = bluejayHead;
             Material[] materials = headMeshRen.materials;
             materials[0] = headMat;
-            headMeshRen.materials = materials;
+            headMeshRen.materials = materials; 
         }
-
-        // This part is important: We want the other clients to see the change for this player
-        // The server's authority ensures that the correct player's mesh is updated across all clients
     }
 
     // Get the key that was pressed
