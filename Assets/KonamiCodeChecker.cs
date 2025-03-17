@@ -58,7 +58,10 @@ public class KonamiCodeChecker : NetworkBehaviour
     [ServerRpc]
     private void ChangeMeshServerRpc()
     {
-        ChangeMeshClientRpc();
+        head.mesh = bluejayHead;
+        Material[] materials = headMeshRen.materials;
+        materials[0] = headMat;
+        headMeshRen.materials = materials; 
     }
 
     [ClientRpc]
