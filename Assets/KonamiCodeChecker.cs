@@ -8,6 +8,16 @@ public class KonamiCodeChecker : NetworkBehaviour
     public Renderer headMeshRen;
     public Material headMat;
 
+	public Material bodyMat;
+	public Material bodyWhiteMat;
+	public Material beakMat;
+
+	public Renderer bodyMeshRen;
+	public Renderer LWingMeshRen;
+	public Renderer RWingMeshRen;
+	public Renderer LLegMeshRen;
+	public Renderer RLegMeshRen;
+
     // The Konami Code sequence (Up, Up, Down, Down, Left, Right, Left, Right, B, A)
     private KeyCode[] konamiCode = new KeyCode[]
     {
@@ -60,10 +70,7 @@ public class KonamiCodeChecker : NetworkBehaviour
     {
         if(IsOwner)
         {
-            head.mesh = bluejayHead;
-            Material[] materials = headMeshRen.materials;
-            materials[0] = headMat;
-            headMeshRen.materials = materials;
+            ChangeMesh();
             ChangeMeshClientRpc();
         }
     }
@@ -71,11 +78,27 @@ public class KonamiCodeChecker : NetworkBehaviour
     [ClientRpc]
     private void ChangeMeshClientRpc()
     {
-        head.mesh = bluejayHead;
+        ChangeMesh();
+    }
+
+	private void ChangeMesh()
+	{
+		head.mesh = bluejayHead;
         Material[] materials = headMeshRen.materials;
         materials[0] = headMat;
+		materials[1] = beakMat;
         headMeshRen.materials = materials; 
-    }
+
+		Material[] bodyMaterials = bodyMeshRen.materials;
+		bodyMaterials[0] = bodyMat;
+		bodyMaterials[1] = bodyWhiteMat;
+		bodyMeshRen.materials = bodyMaterials;
+
+		LLegMeshRen.material = beakMat;
+		RLegMeshRen.material = beakMat;
+		LWingMeshRen.material = bodyMat;
+		RWingMeshRen.material = bodyMat;
+	}
 
     // Get the key that was pressed
     private KeyCode GetKeyPressed()
