@@ -55,7 +55,7 @@ public class KonamiCodeChecker : NetworkBehaviour
         ChangeMeshServerRpc();
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership=false)]
     private void ChangeMeshServerRpc()
     {
         if(IsOwner)
