@@ -56,10 +56,10 @@ public class KonamiCodeChecker : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void NotifyServerOfKonamiCodeEnteredServerRpc(ServerRpcParams rpcParams = default)
+    private void NotifyServerOfKonamiCodeEnteredServerRpc(ulong clientId, ServerRpcParams rpcParams = default)
     {
-        // Call the ClientRpc to change the mesh for the player who entered the code
-        ChangeMeshClientRpc(rpcParams.Receive.SenderClientId);
+        // Call the ClientRpc to change the mesh for the specific player who entered the code
+        ChangeMeshClientRpc(clientId);
     }
 
     // ClientRpc to change the player's mesh
@@ -68,12 +68,15 @@ public class KonamiCodeChecker : NetworkBehaviour
     {
         if (NetworkManager.Singleton.LocalClientId == clientId)
         {
-            // Change the mesh and material only for the client who entered the code
+            // This player entered the code, so change their mesh
             head.mesh = bluejayHead;
             Material[] materials = headMeshRen.materials;
             materials[0] = headMat;
             headMeshRen.materials = materials;
         }
+
+        // This part is important: We want the other clients to see the change for this player
+        // The server's authority ensures that the correct player's mesh is updated across all clients
     }
 
     // Get the key that was pressed
