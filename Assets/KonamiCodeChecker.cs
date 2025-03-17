@@ -1,6 +1,7 @@
 using UnityEngine;
+using Unity.Netcode;
 
-public class KonamiCodeChecker : MonoBehaviour
+public class KonamiCodeChecker : NetworkBehaviour
 {
     public MeshFilter head;
     public Mesh bluejayHead;
@@ -51,6 +52,12 @@ public class KonamiCodeChecker : MonoBehaviour
         Debug.Log("Konami Code entered! You've unlocked the secret!");
         // You can trigger any special event here, e.g., unlocking a cheat, a secret level, etc.
 
+        ChangeMeshClientRpc();
+    }
+
+    [ClientRpc]
+    private void ChangeMeshClientRpc()
+    {
         head.mesh = bluejayHead;
         Material[] materials = headMeshRen.materials;
         materials[0] = headMat;
