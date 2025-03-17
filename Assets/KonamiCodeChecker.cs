@@ -52,6 +52,12 @@ public class KonamiCodeChecker : NetworkBehaviour
         Debug.Log("Konami Code entered! You've unlocked the secret!");
         // You can trigger any special event here, e.g., unlocking a cheat, a secret level, etc.
 
+        ChangeMeshServerRpc();
+    }
+
+    [ServerRpc]
+    private void ChangeMeshServerRpc()
+    {
         ChangeMeshClientRpc();
     }
 
