@@ -15,12 +15,18 @@ public class PlayerAudioManager : NetworkBehaviour
 
     public void PlayHitWallSound(Vector3 loc)
     {
-        PlayHitWallSoundClientRpc(loc);
+        PlayHitWallSoundServerRpc(loc);
     }
 
     [ClientRpc]
     void PlayHitWallSoundClientRpc(Vector3 loc)
     {
         AudioSource.PlayClipAtPoint(hitWall, loc, 1.0f);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void PlayHitWallSoundServerRpc(Vector3 loc)
+    {
+        PlayHitWallSoundClientRpc(loc);
     }
 }
