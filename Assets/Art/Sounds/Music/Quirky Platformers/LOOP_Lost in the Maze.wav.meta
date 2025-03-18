@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: c33c0bb0e6a464477b9a652484670e38
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 7
+  defaultSettings:
+    serializedVersion: 2
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+    preloadAudioData: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 303185
+  packageName: Quirky Platformers Music Pack
+  packageVersion: 1.0
+  assetPath: Assets/Audio/Music/Quirky Platformers/LOOP_Lost in the Maze.wav
+  uploadId: 710630
