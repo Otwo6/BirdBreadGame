@@ -16,11 +16,13 @@ public class PlayerHit : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         GameObject otherPlayer = col.gameObject;
+        myAud.PlayHitWallSound(transform.position);
         if (otherPlayer.CompareTag("Player"))
         {
             Debug.Log("Hit a player");
 
             PlayerInventory hitInv = otherPlayer.GetComponentInParent<PlayerInventory>();
+            myAud.PlayHitBirdSound(transform.position);
 
             if (hitInv.GetHasBread())
             {
@@ -44,7 +46,6 @@ public class PlayerHit : MonoBehaviour
             // Not a player
 			print("Hit " + otherPlayer);
             GetComponent<PlayerMovement>().StopVelocity();
-            myAud.PlayHitWallSound(transform.position);
 		}
     }
 }

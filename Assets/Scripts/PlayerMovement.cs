@@ -15,12 +15,15 @@ public class PlayerMovement : NetworkBehaviour
     private Rigidbody rb;
 	public float flapHeight;
 
+    private PlayerAudioManager myAud;
+
     [SerializeField] OwnerNetworkAnimator anim;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false; // We control gravity manually for smoother gliding
+        myAud = GetComponent<PlayerAudioManager>();
     }
 
     void Update()
@@ -42,7 +45,10 @@ public class PlayerMovement : NetworkBehaviour
             rb.AddForce(Vector3.up * flapHeight, ForceMode.Impulse);
             anim.SetTrigger("Flap Wings");
             print("JUMP JUMP");
+            myAud.PlayFlapSound(transform.position);
         }
+
+        myAud.windMove.volume = rb.linearVelocity.magnitude/6.0f;
     }
 
     void FixedUpdate()
