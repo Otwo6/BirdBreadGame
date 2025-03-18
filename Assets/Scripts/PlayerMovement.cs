@@ -55,7 +55,7 @@ public class PlayerMovement : NetworkBehaviour
     public void StopVelocity()
     {
         rb.linearVelocity = new Vector3(0f, 0f, 0f);
-        speed = 2f;
+        speed = 5f;
 
         StartCoroutine(RegainSpeed());
     }
