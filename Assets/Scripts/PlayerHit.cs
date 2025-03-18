@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerHit : MonoBehaviour
 {
     PlayerInventory myInv;
+    PlayerAudioManager myAud;
 
     void Start()
     {
         myInv = GetComponent<PlayerInventory>();
+        myAud = GetComponent<PlayerAudioManager>();
     }
 
     void OnCollisionEnter(Collision col)
@@ -42,6 +44,7 @@ public class PlayerHit : MonoBehaviour
             // Not a player
 			print("Hit " + otherPlayer);
             GetComponent<PlayerMovement>().StopVelocity();
+            myAud.PlayHitWallSound(transform.position);
 		}
     }
 }

@@ -6364,7 +6364,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1715361326}
+  m_Mesh: {fileID: 1372377830}
 --- !u!33 &771135532
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -9267,7 +9267,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1715361326}
+  m_Mesh: {fileID: 1481894553}
 --- !u!33 &910774781
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -15251,7 +15251,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 455789615}
+  m_Mesh: {fileID: 1715361326}
 --- !u!33 &1171743193
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -39407,7 +39407,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58240f15081e2504b9b922224860f4ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

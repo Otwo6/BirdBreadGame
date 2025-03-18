@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 7633226861799856227}
   - component: {fileID: 6631422411542926383}
   - component: {fileID: 8285473998246878495}
+  - component: {fileID: 5059689326293710626}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -654,6 +655,19 @@ MonoBehaviour:
   RWingMeshRen: {fileID: 4927066503952294452}
   LLegMeshRen: {fileID: 4064580659271394858}
   RLegMeshRen: {fileID: 6036298512699061612}
+--- !u!114 &5059689326293710626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734718793299391901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ca5d8df25ddc247af10e9a7bded171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitWall: {fileID: 8300000, guid: e1f7e2303a83bd742bbf5f9dadffef1a, type: 3}
 --- !u!1 &5441019032569591077
 GameObject:
   m_ObjectHideFlags: 0
