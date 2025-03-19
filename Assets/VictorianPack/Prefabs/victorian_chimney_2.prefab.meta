@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 1de2528c8d02d4d90acb3f881d5f2ba4
+timeCreated: 1546797738
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 136611
+  packageName: Victorian Low Poly Pack
+  packageVersion: 1.0
+  assetPath: Assets/VictorianPack/Prefabs/victorian_chimney_2.prefab
+  uploadId: 286470

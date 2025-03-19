@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9960eb74dc9f64530a08b7e4dea6d54a
+timeCreated: 1541987084
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 136611
+  packageName: Victorian Low Poly Pack
+  packageVersion: 1.0
+  assetPath: Assets/VictorianPack/Models/Materials/Victorian_Wood_1.mat
+  uploadId: 286470

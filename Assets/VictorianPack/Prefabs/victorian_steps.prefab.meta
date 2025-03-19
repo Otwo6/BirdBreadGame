@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e7b5b4fcd64cf498b9173ef4564eda11
+timeCreated: 1546797719
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 136611
+  packageName: Victorian Low Poly Pack
+  packageVersion: 1.0
+  assetPath: Assets/VictorianPack/Prefabs/victorian_steps.prefab
+  uploadId: 286470

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6d0a5ee6c312247efa0c4fc8dcb062f7
+timeCreated: 1546797717
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 136611
+  packageName: Victorian Low Poly Pack
+  packageVersion: 1.0
+  assetPath: Assets/VictorianPack/Prefabs/victorian_door_2.prefab
+  uploadId: 286470

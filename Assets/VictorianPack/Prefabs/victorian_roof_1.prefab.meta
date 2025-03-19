@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6748738febf534b8fb196044d16a7259
+timeCreated: 1546797742
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 136611
+  packageName: Victorian Low Poly Pack
+  packageVersion: 1.0
+  assetPath: Assets/VictorianPack/Prefabs/victorian_roof_1.prefab
+  uploadId: 286470

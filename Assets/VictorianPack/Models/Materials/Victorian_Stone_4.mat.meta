@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: b60241d2b68eb41b7b0731a98377fc35
+timeCreated: 1542166598
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 136611
+  packageName: Victorian Low Poly Pack
+  packageVersion: 1.0
+  assetPath: Assets/VictorianPack/Models/Materials/Victorian_Stone_4.mat
+  uploadId: 286470

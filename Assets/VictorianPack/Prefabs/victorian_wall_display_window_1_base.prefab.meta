@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 562af20b40d404919bd229b5c0a3d95e
+timeCreated: 1546797727
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 136611
+  packageName: Victorian Low Poly Pack
+  packageVersion: 1.0
+  assetPath: Assets/VictorianPack/Prefabs/victorian_wall_display_window_1_base.prefab
+  uploadId: 286470

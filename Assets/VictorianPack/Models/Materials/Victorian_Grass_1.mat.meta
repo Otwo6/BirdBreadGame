@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a59dd16363c9443659d4ee4c71389ab5
+timeCreated: 1542525448
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 136611
+  packageName: Victorian Low Poly Pack
+  packageVersion: 1.0
+  assetPath: Assets/VictorianPack/Models/Materials/Victorian_Grass_1.mat
+  uploadId: 286470

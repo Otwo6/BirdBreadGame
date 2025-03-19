@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 75dd86b61267a43fca80565ecfff9c6b
+timeCreated: 1546797747
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 136611
+  packageName: Victorian Low Poly Pack
+  packageVersion: 1.0
+  assetPath: Assets/VictorianPack/Prefabs/victorian_curb_2.prefab
+  uploadId: 286470

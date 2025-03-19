@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 515dcdbd280d84806bb0cb1167738166
+timeCreated: 1546797740
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 136611
+  packageName: Victorian Low Poly Pack
+  packageVersion: 1.0
+  assetPath: Assets/VictorianPack/Prefabs/victorian_wall_brick_1_window.prefab
+  uploadId: 286470

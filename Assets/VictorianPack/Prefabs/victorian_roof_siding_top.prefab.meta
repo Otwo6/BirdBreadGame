@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 05282cf3e3cb64c788a910b232b92a05
+timeCreated: 1546797737
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 136611
+  packageName: Victorian Low Poly Pack
+  packageVersion: 1.0
+  assetPath: Assets/VictorianPack/Prefabs/victorian_roof_siding_top.prefab
+  uploadId: 286470

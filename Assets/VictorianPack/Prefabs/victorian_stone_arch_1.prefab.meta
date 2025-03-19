@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: fea3411bd8bce460fbb3d08fddd82330
+timeCreated: 1546797728
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 136611
+  packageName: Victorian Low Poly Pack
+  packageVersion: 1.0
+  assetPath: Assets/VictorianPack/Prefabs/victorian_stone_arch_1.prefab
+  uploadId: 286470

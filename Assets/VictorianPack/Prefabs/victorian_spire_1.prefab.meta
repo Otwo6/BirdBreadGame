@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 21cde93b36b05428f8017525b0b471ad
+timeCreated: 1546797739
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 136611
+  packageName: Victorian Low Poly Pack
+  packageVersion: 1.0
+  assetPath: Assets/VictorianPack/Prefabs/victorian_spire_1.prefab
+  uploadId: 286470
