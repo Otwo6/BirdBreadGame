@@ -48,7 +48,7 @@ public class PlayerMovement : NetworkBehaviour
             myAud.PlayFlapSound(transform.position);
         }
 
-        myAud.windMove.volume = Mathf.Clamp(rb.linearVelocity.magnitude, 0f, 0.2f);
+        myAud.windMove.volume = Mathf.Clamp(rb.linearVelocity.magnitude, 0f, 0.05f);
     }
 
     void FixedUpdate()
