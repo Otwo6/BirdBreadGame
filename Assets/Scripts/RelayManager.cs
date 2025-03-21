@@ -25,6 +25,8 @@ public class RelayManager : MonoBehaviour
 	[SerializeField] GameObject playerHUD;
     [SerializeField] GameObject startCam;
 
+    [HideInInspector] public float playerSens = 50.0f; 
+
     // Start is called before the first frame update
     async void Start() {
         await UnityServices.InitializeAsync();
@@ -50,6 +52,7 @@ public class RelayManager : MonoBehaviour
 
         NetworkManager.Singleton.StartHost();
         SetName();
+        SetSens();
     }
 
     async void JoinRelay(string joinCode) {
@@ -63,6 +66,7 @@ public class RelayManager : MonoBehaviour
         Destroy(startCam);
 		codeText.text = "Code: " + joinCode; 
         StartCoroutine(DelaySetName());
+        StartCoroutine(DelaySetSens());
     }
 
     void SetName()
@@ -99,5 +103,34 @@ public class RelayManager : MonoBehaviour
     
         // Once PlayerObject is available, set the name
         SetName();
+    }
+
+    void SetSens()
+    {
+        GameObject playerChar = NetworkManager.Singleton.LocalClient.PlayerObject.gameObject;
+        if(playerChar != null)
+        {
+            PlayerMovement move = playerChar.GetComponent<PlayerMovement>();
+
+            if(move != null)
+            {
+                move.turnSpeed = playerSens;
+            }
+            else
+            {
+                print("Doesn't wanna work bc screw you");
+            }
+        }
+    }
+
+    IEnumerator DelaySetSens()
+    {
+        while (NetworkManager.Singleton.LocalClient.PlayerObject == null)
+        {
+            yield return null;
+        }
+    
+        // Once PlayerObject is available, set the name
+        SetSens();
     }
 }
